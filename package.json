@@ -1,0 +1,23 @@
+{
+	"name": "movie_buddy_node",
+	"description" : "movie_buddy_node",
+	"version": "0.0.0",
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/k33g/movie_buddy_node.git"
+	},
+	"license" : "MIT",
+	"author" : {
+		"name" : "Philippe Charrière",
+		"twitter" : "@k33g_org",
+		"url" : "http://www.k33g.org"
+	},
+	"dependencies": {
+        "express": "*",
+        "mathjs": "*",
+        "Faker": "*",
+        "jsonfile": "*"
+	}
+}
+
+
