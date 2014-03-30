@@ -5,7 +5,6 @@ var ApplicationTab = React.createClass({
 	getInitialState: function() {
 		return {data : [], message : ""};
 	},
-	
 	render: function() {
 		return (
       <div id={this.props.id}>
@@ -47,7 +46,6 @@ var ApplicationTab = React.createClass({
       </div>
 		);
 	},
-
 	componentDidMount: function() {
 
     console.log("ApplicationTab --> userRates : ", this.props.userRates);
@@ -58,6 +56,5 @@ var ApplicationTab = React.createClass({
     })
     $('#'+this.props.id+' ul a:first').tab('show')
   },
-	componentWillMount: function() {}
 
 });
