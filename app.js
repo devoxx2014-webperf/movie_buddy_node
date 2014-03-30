@@ -3,7 +3,12 @@ var args = process.argv.splice(2);
 var express = require('express');
 
 
-var movies = require('./db/movies.js')
+var movies = require('./db/movies.js');
+var users = require('./db/users.js');
+
+var rates = {};
+
+var preco = require("./libs/euclidean");
 
 
 var app = express()
@@ -23,10 +28,66 @@ app.get("/movies/:id", function(req, res) {
   }));
 });
 
-app.get("/movies/search/:title", function(req, res) {
+app.get("/movies/search/title/:title/:limit", function(req, res) {
   res.send(movies.filter(function(movie) {
     return movie.Title.toLowerCase().search(new RegExp(req.params.title.toLowerCase()),"g") != -1;
+  }).slice(0,req.params.limit));
+});
+
+app.get("/movies/search/actors/:actors/:limit", function(req, res) {
+  res.send(movies.filter(function(movie) {
+    return movie.Actors.toLowerCase().search(new RegExp(req.params.actors.toLowerCase()),"g") != -1;
+  }).slice(0,req.params.limit));
+});
+
+app.get("/movies/search/genre/:genre/:limit", function(req, res) {
+  res.send(movies.filter(function(movie) {
+    return movie.Genre.toLowerCase().search(new RegExp(req.params.genre.toLowerCase()),"g") != -1;
+  }).slice(0,req.params.limit));
+});
+
+
+app.get("/users", function(req, res) {
+  res.send(users);
+});
+
+app.get("/users/:id", function(req, res) {
+  res.send(users.filter(function(user) {
+    return user._id == req.params.id;
   }));
+});
+
+app.get("/users/search/:name/:limit", function(req, res) {
+  res.send(users.filter(function(user) {
+    return user.name.toLowerCase().search(new RegExp(req.params.name.toLowerCase()),"g") != -1;
+  }).slice(0,req.params.limit));
+});
+
+app.post("/rates", function(req, res) {
+
+  var userRate = req.body;
+
+  //console.log(userRate);
+
+  if(!rates[userRate.userId]) rates[userRate.userId] = {};
+  rates[userRate.userId][userRate.movieId] = userRate.rate;
+
+  //console.log(rates);
+
+  res.json(201);
+  //res.json(201,req.body);
+  //res.send(201);
+
+});
+
+//$.getJSON("users/share/2164/452", function(data) { console.log(data); })
+app.get("/users/share/:userid1/:userid2", function(req, res) {
+  res.json(200, preco.sharedPreferences(rates, +req.params.userid1, +req.params.userid2));
+});
+
+//$.getJSON("users/distance/2164/452", function(data) { console.log(data); })
+app.get("/users/distance/:userid1/:userid2", function(req, res) {
+  res.json(200, preco.distance(rates, req.params.userid1, req.params.userid2));
 });
 
 
