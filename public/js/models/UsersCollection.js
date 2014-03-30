@@ -1,10 +1,10 @@
 /*--- Users Collection ---*/
 
 var UsersCollection = Backbone.Collection.extend({
-	urlRoot : "users/search/",
+  urlRoot : "users/search/",
   searchName : "john doe",
   limit : 10,
-	model: UserModel,
+  model: UserModel,
 
   url : function() {
     return _.result(this, "urlRoot") + this.searchName + "/" + this.limit;
