@@ -5,7 +5,7 @@ var ApplicationTab = React.createClass({
 	getInitialState: function() {
 		return {data : [], message : ""};
 	},
-
+	
 	render: function() {
 		return (
       <div id={this.props.id}>
