@@ -37,14 +37,14 @@ var UsersTable = React.createClass({
         <div className="panel panel-default">
           <div className="panel-heading">Search users by name</div>
           <div className="panel-body">
-            <form role="form" className="form-inline" onSubmit={this.handleSubmit}>
+            <div role="form" className="form-inline">
               <div className="form-group">
-                <input className="form-control" type="search" placeholder="name" ref="name"/>
+                <input className="form-control" type="search" placeholder="name" ref="name" onKeyPress={ this.handleKeyPressed }/>
               </div>
               <div className="form-group">
-                <input className="btn btn-primary" type="submit" value="Search" />
+                <input className="btn btn-primary" type="submit" value="Search" onClick={ this.handleClick } />
               </div>
-            </form>
+            </div>
           </div>
         </div>
 
@@ -64,7 +64,14 @@ var UsersTable = React.createClass({
 		);
 	},
 
-  handleSubmit : function() {
+  handleKeyPressed : function(event) {
+    if (event.keyCode == 13) {
+      this.handleClick();
+    }
+
+  },
+
+  handleClick : function() {
     var name = this.refs.name.getDOMNode().value.trim();
 
     if (!name) {
@@ -76,10 +83,13 @@ var UsersTable = React.createClass({
 
 	getUsers : function(search_name) {
 
+    console.log("search_name : ", search_name)
+
 		var users = new UsersCollection();
 
 		users.load(search_name, 10)
 			.done(function(data){
+        console.log("data : ", data)
 				this.setState({data : users.toJSON(), message : Date()});
 			}.bind(this))
 			.fail(function(err){
