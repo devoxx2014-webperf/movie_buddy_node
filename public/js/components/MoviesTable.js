@@ -12,8 +12,6 @@ var MoviesTable = React.createClass({
 
 	render: function() {
 
-
-
 	  var movieRow = function(movie) {
 
       var rateLink0 = "#rate_movie/" + movie._id + "/0";
@@ -42,7 +40,6 @@ var MoviesTable = React.createClass({
 
         </tr>
         );
-
 	  }
 
 		var moviesRows = this.state.data.map(function(movie){
@@ -109,17 +106,14 @@ var MoviesTable = React.createClass({
     if (event.keyCode == 13) {
       this.handleClick(field, event);
     }
-
   },
 
   handleClick : function(field, event) {
     console.log("search by : ", field)
-    //this.setState({searchField: field})
 
     var genre = this.refs.genre.getDOMNode().value.trim();
     var title = this.refs.title.getDOMNode().value.trim();
     var actors = this.refs.actors.getDOMNode().value.trim();
-
 
     if (field=="title" && title) this.getMovies("title", title);
     if (field=="genre" && genre) this.getMovies("genre", genre);
