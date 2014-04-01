@@ -185,9 +185,9 @@ var MoviesTable = React.createClass({
             type : "POST",
             url : "rates",
             data : JSON.stringify ({
-              userId : thatComponent.props.userRates.currentUser.id,
-              movieId : id,
-              rate : rate
+              userId : +thatComponent.props.userRates.currentUser.id,
+              movieId : +id,
+              rate : +rate
             }),
             contentType: "application/json",
             dataType: 'json'
@@ -205,9 +205,9 @@ var MoviesTable = React.createClass({
           */
 
           var rate = new RateModel({
-            userId : thatComponent.props.userRates.currentUser.id,
-            movieId : id,
-            rate : rate
+            userId : +thatComponent.props.userRates.currentUser.id,
+            movieId : +id,
+            rate : +rate
           });
 
           rate.save({})
