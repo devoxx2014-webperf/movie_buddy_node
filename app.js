@@ -67,18 +67,20 @@ app.post("/rates", function(req, res) {
 
   var userRate = req.body;
 
-  //console.log(userRate);
-
   if(!rates[userRate.userId]) rates[userRate.userId] = {};
   rates[userRate.userId][userRate.movieId] = userRate.rate;
 
-  //console.log(rates);
-
-  res.json(201);
-  //res.json(201,req.body);
-  //res.send(201);
+  res.statusCode = 201;
+  res.header("location", "/rates/"+userRate.userId).end();
+  //res.header("location", "/rates/"+userRate.userId).json(201, req.body);
 
 });
+
+//$.getJSON("rates/2164", function(data) { console.log(data); })
+app.get("/rates/:userid1", function(req, res) {
+  res.json(200,rates[req.params.userid1]);
+});
+
 
 //$.getJSON("users/share/2164/452", function(data) { console.log(data); })
 app.get("/users/share/:userid1/:userid2", function(req, res) {
@@ -89,7 +91,6 @@ app.get("/users/share/:userid1/:userid2", function(req, res) {
 app.get("/users/distance/:userid1/:userid2", function(req, res) {
   res.json(200, preco.distance(rates, req.params.userid1, req.params.userid2));
 });
-
 
 
 app.listen(args[0] || 3000);
