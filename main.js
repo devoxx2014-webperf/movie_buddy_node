@@ -72,6 +72,7 @@ app.post("/rates", function(req, res) {
 
   res.statusCode = 201;
   res.header("location", "/rates/"+userRate.userId).end();
+  //console.log(rates)
   //res.header("location", "/rates/"+userRate.userId).json(201, req.body);
 
 });
