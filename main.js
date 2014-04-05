@@ -95,5 +95,6 @@ app.get("/users/distance/:userid1/:userid2", function(req, res) {
 });
 
 
-app.listen(args[0] || 3000);
-console.log("Listening on 3000")
+//app.listen(args[0] || 3000);
+app.listen(process.env.PORT || 3000)
+console.log("Listening ..." + process.env.PORT)
