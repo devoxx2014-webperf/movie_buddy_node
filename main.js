@@ -94,5 +94,5 @@ app.get("/users/distance/:userid1/:userid2", function(req, res) {
 });
 
 
-app.listen(args[0] || 8080);
-console.log("Listening on 8080")
+app.listen(args[0] || 3000);
+console.log("Listening on 3000")
