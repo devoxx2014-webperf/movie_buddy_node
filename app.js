@@ -78,6 +78,7 @@ app.post("/rates", function(req, res) {
 
 //$.getJSON("rates/2164", function(data) { console.log(data); })
 app.get("/rates/:userid1", function(req, res) {
+  if (!rates[req.params.userid1]) rates[req.params.userid1] = [];
   res.json(200,rates[req.params.userid1]);
 });
 
