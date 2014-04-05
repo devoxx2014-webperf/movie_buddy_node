@@ -14,9 +14,7 @@
 	},
 	"dependencies": {
         "express": "*",
-        "mathjs": "*",
-        "Faker": "*",
-        "jsonfile": "*"
+        "mathjs": "*"
 	}
 }
 
