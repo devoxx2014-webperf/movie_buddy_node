@@ -27,7 +27,7 @@ var preco = {
       //console.log("--> ", item, " : ",  math.pow(preferences[user1][item] - preferences[user2][item],2))
       sum_of_squares += math.pow(preferences[user1][item] - preferences[user2][item],2);
     });
-
+    //console.log("distance" ,1/(1 + math.sqrt(sum_of_squares)))
     return 1/(1 + math.sqrt(sum_of_squares));
   },
 

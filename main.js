@@ -91,7 +91,8 @@ app.get("/users/share/:userid1/:userid2", function(req, res) {
 
 //$.getJSON("users/distance/2164/452", function(data) { console.log(data); })
 app.get("/users/distance/:userid1/:userid2", function(req, res) {
-  res.json(200, preco.distance(rates, req.params.userid1, req.params.userid2));
+  var distance = {distance:preco.distance(rates, req.params.userid1, req.params.userid2)};
+  res.json(200, distance);
 });
 
 

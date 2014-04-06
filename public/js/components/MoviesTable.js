@@ -204,6 +204,8 @@ var MoviesTable = React.createClass({
           });
           */
 
+          //s = "{\"userId\":4806,\"movieId\":23,\"rate\":3}"
+
           var rate = new RateModel({
             userId : +thatComponent.props.userRates.currentUser.id,
             movieId : +id,
