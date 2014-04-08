@@ -70,9 +70,8 @@ app.post("/rates", function(req, res) {
   if(!rates[userRate.userId]) rates[userRate.userId] = {};
   rates[userRate.userId][userRate.movieId] = userRate.rate;
 
-  res.statusCode = 201;
+  res.statusCode = 301;
   res.header("location", "/rates/"+userRate.userId).end();
-  //console.log(rates)
   //res.header("location", "/rates/"+userRate.userId).json(201, req.body);
 
 });
